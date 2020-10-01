@@ -10,6 +10,7 @@ if os.path.exists(dotenv_path):
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 
 MAX_FONT_SIZE = 96
+MARGIN = 10
 
 FONTS = list(map(lambda x: x.replace(".ttf", ""), os.listdir("fonts")))
 
@@ -21,10 +22,10 @@ TEXT_COLORS = {
     "Синий": [0, 0, 255],
 }
 
-positions = [
-    "Сверху в левом углу",
-    "Сверху в правом углу",
-    "Снизу в левом углу",
-    "Снизу в правом углу",
-    "По центру"
-]
+positions = {
+    "Сверху в левом углу": 1,
+    "Сверху в правом углу": 2,
+    "Снизу в левом углу": 3,
+    "Снизу в правом углу": 4,
+    "По центру": 5
+}

@@ -40,7 +40,6 @@ async def set_fontsize(msg: Message, state: FSMContext):
 async def set_text(msg: Message, state: FSMContext):
     text = msg.text
     data = await state.get_data()
-
     data.get("color").append(data.get("opacity"))
     path_to_pic = f"pic/{data.get('photo').file_id}"
 
@@ -54,10 +53,10 @@ async def set_text(msg: Message, state: FSMContext):
         data.get("fontsize"),
         text
     )
-    await msg.bot.send_photo(
+    sended_pic = await msg.bot.send_photo(
         msg.chat.id,
         open(watermarked_photo, "rb")
     )
-    await msg.reply("Собственно, вот твоё фото с вотермаркой. "
-                    "Клацай /start чтобы поставить вотермарку на ещё одно фото.")
+    await sended_pic.reply("Вот твоё фото с вотермаркой. "
+                           "Клацай /start чтобы поставить вотермарку на ещё одно фото.")
     await state.finish()

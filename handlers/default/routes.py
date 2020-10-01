@@ -6,14 +6,14 @@ from config import positions, TEXT_COLORS, FONTS, MAX_FONT_SIZE
 from typing import Union
 
 
-def check_in(text: str, mas: list) -> Union[str, None]:
-    if text in mas:
+def check_in(text: str, _list: list) -> Union[str, None]:
+    if text in _list:
         return text
 
 
-def set_color(text: str) -> list:
-    if check_in(text, TEXT_COLORS):
-        return TEXT_COLORS[text]
+def find_in_dict(text: str, _dict: dict):
+    if check_in(text, _dict.keys()):
+        return _dict[text]
 
 
 def validate_number(num: str, max_num: int = 255) -> Union[None, int]:
@@ -38,7 +38,7 @@ messages = {
         reply_markup=colors()
     ),
     "opacity": dict(
-        text="Установите прозрачность цифрой от 0 до 255 (255 полностью прозрачный, 0 - непрозрачный)",
+        text="Установите прозрачность цифрой от 1 до 255 (255 непрозрачный, 1 - полностью прозрачный)",
         reply_markup=ReplyKeyboardRemove()
     ),
     "font": dict(
@@ -85,13 +85,13 @@ class TextRoute:
 
 position = TextRoute(
     "position",
-    lambda text: check_in(text, positions),
+    lambda text: find_in_dict(text, positions),
     messages.get("position"),
     messages.get("color")
 )
 color = TextRoute(
     "color",
-    lambda text: set_color(text),
+    lambda text: find_in_dict(text, TEXT_COLORS),
     messages.get("color"),
     messages.get("opacity")
 )
