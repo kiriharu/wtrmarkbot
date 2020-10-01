@@ -2,7 +2,16 @@ from aiogram import Dispatcher
 from states.state import SetWatermark
 from aiogram.types import ContentTypes
 
-from .process import starting, get_picture, get_position, get_color, set_opacity, set_font
+from .process import (
+    starting,
+    get_picture,
+    get_position,
+    get_color,
+    set_opacity,
+    set_font,
+    set_fontsize,
+    set_text
+)
 
 
 def setup(dp: Dispatcher):
@@ -30,5 +39,15 @@ def setup(dp: Dispatcher):
     dp.register_message_handler(
         set_font,
         state=SetWatermark.set_font,
+        content_types=ContentTypes.TEXT
+    )
+    dp.register_message_handler(
+        set_fontsize,
+        state=SetWatermark.set_fontsize,
+        content_types=ContentTypes.TEXT
+    )
+    dp.register_message_handler(
+        set_text,
+        state=SetWatermark.set_text,
         content_types=ContentTypes.TEXT
     )

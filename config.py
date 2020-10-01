@@ -9,6 +9,8 @@ if os.path.exists(dotenv_path):
 # Loading token from .env
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 
+MAX_FONT_SIZE = 96
+
 FONTS = list(map(lambda x: x.replace(".ttf", ""), os.listdir("fonts")))
 
 TEXT_COLORS = {
