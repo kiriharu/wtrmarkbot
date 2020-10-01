@@ -9,6 +9,8 @@ if os.path.exists(dotenv_path):
 # Loading token from .env
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 
+STARTING_MESSAGE = "TODO: заполни стартовое сообщени. А пока пиши /watermark чтобы наложить вотерку"
+
 MAX_FONT_SIZE = 96
 MARGIN = 10
 

@@ -1,6 +1,7 @@
 from aiogram import Dispatcher
 from states.state import SetWatermark
 from aiogram.types import ContentTypes
+from .starting import start
 
 from .process import (
     starting,
@@ -15,7 +16,8 @@ from .process import (
 
 
 def setup(dp: Dispatcher):
-    dp.register_message_handler(starting, commands=['start'])
+    dp.register_message_handler(start, commands=['start'])
+    dp.register_message_handler(starting, commands=['watermark'])
     dp.register_message_handler(
         get_picture,
         state=SetWatermark.get_pic,
