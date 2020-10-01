@@ -10,9 +10,9 @@ def set_watermark(img_path):
     width, height = im.size
 
     draw = ImageDraw.Draw(im)
-    text = "it_talks"
+    text = "it-talks"
 
-    font = ImageFont.truetype('arial.ttf', 36)
+    font = ImageFont.truetype('fonts/MotorolaV50copy.ttf', 36)
     textwidth, textheight = draw.textsize(text, font)
 
     # calculate the x,y coordinates of the text
