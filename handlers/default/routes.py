@@ -11,11 +11,6 @@ def check_in(text: str, _list: list) -> Union[str, None]:
         return text
 
 
-def find_in_dict(text: str, _dict: dict):
-    if check_in(text, _dict.keys()):
-        return _dict[text]
-
-
 def validate_number(num: str, max_num: int = 255) -> Union[None, int]:
     if not num.isdigit():
         return
@@ -85,13 +80,13 @@ class TextRoute:
 
 position = TextRoute(
     "position",
-    lambda text: find_in_dict(text, positions),
+    lambda text: positions.get(text),
     messages.get("position"),
     messages.get("color")
 )
 color = TextRoute(
     "color",
-    lambda text: find_in_dict(text, TEXT_COLORS),
+    lambda text: TEXT_COLORS.get(text),
     messages.get("color"),
     messages.get("opacity")
 )
