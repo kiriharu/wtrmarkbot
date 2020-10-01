@@ -5,7 +5,7 @@ class SetWatermark(StatesGroup):
     get_pic = State()
     set_position = State()
     set_textcolor = State()
-    # TODO: Прозрачность
+    set_opacity = State()
     # TODO: список шрифтов
     # TODO: размер шрифта
     # TODO: какой текст

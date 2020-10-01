@@ -3,6 +3,7 @@ from config import positions, TEXT_COLORS
 
 
 def watermark_position() -> ReplyKeyboardMarkup:
+
     keyboard = ReplyKeyboardMarkup(resize_keyboard=True)
     for pos in positions:
         keyboard.add(pos)
