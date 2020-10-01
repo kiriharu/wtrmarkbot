@@ -1,8 +1,8 @@
 from aiogram.types import Message
 from aiogram.dispatcher import FSMContext
 from states.state import SetWatermark
-from keyboards.reply.watermark import watermark_position, colors
-from config import positions, TEXT_COLORS
+from keyboards.reply.watermark import watermark_position, colors, fonts
+from config import positions, TEXT_COLORS, FONTS
 from loguru import logger
 from aiogram.types import ReplyKeyboardRemove
 from utlis.image_converter import async_image_process
@@ -72,6 +72,20 @@ async def set_opacity(msg: Message, state: FSMContext):
     opacity = int(msg.text)
     logger.info(f"{msg.from_user.id} set opacity to: {opacity}")
     await state.update_data(opacity=opacity)
+
+    await SetWatermark.next()
+    await msg.reply("Выберите шрифт", reply_markup=fonts())
+
+
+async def set_font(msg: Message, state: FSMContext):
+    font = msg.text
+    if font not in FONTS:
+        await msg.reply("Выберите шрифт", reply_markup=fonts())
+        return
+    logger.info(f"{msg.from_user.id} set opacity to: {font}")
+    await state.update_data(font=font)
+
+    await SetWatermark.next()
 
     #photo = (await state.get_data())['photo']
     #path_to_pic = f"pic/{photo.file_id}"
