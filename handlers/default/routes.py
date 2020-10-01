@@ -3,15 +3,15 @@ from aiogram.dispatcher import FSMContext
 from states.state import SetWatermark
 from keyboards.reply.watermark import watermark_position, colors, fonts
 from config import positions, TEXT_COLORS, FONTS, MAX_FONT_SIZE
-from typing import Union
+from typing import Optional
 
 
-def check_in(text: str, _list: list) -> Union[str, None]:
+def check_in(text: str, _list: list) -> Optional[str]:
     if text in _list:
         return text
 
 
-def validate_number(num: str, max_num: int = 255) -> Union[None, int]:
+def validate_number(num: str, max_num: int = 255) -> Optional[int]:
     if not num.isdigit():
         return
     int_num = int(num)
