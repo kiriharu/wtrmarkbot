@@ -16,6 +16,8 @@ def on_startup():
     logger.info("Register handlers...")
     # Register you handlers here.
     handlers.default.setup(dp)
+    handlers.settings.setup(dp)
+    handlers.watermark.setup(dp)
     dp.middleware.setup(UserMiddleware())
 
 
