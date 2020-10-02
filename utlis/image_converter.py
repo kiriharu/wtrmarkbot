@@ -1,6 +1,7 @@
 from concurrent.futures import ThreadPoolExecutor
 from functools import partial
 from enum import IntEnum
+from typing import Union, Tuple
 from PIL import ImageFont, ImageDraw, Image
 from config import MARGIN
 pool = ThreadPoolExecutor()
