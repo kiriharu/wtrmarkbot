@@ -3,7 +3,8 @@ from states.state import SetWatermark
 from aiogram.types import ContentTypes
 
 from .watermark import (
-    starting,
+    starting_from_command,
+    starting_from_callback,
     get_picture,
     get_position,
     get_color,
@@ -18,10 +19,16 @@ def setup(dp: Dispatcher):
 
     # Комманды
     dp.register_message_handler(
-        starting, commands=['watermark']
+        starting_from_command, commands=['watermark']
     )
 
-    # Состояния для создания без настроект
+    # Калбеки
+    dp.register_callback_query_handler(
+        starting_from_callback,
+        lambda c: c.data and c.data.startswith('watermark_default')
+    )
+
+    # Состояния для создания без настроек
     dp.register_message_handler(
         get_picture,
         state=SetWatermark.get_pic,

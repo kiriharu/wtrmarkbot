@@ -1,12 +1,20 @@
-from aiogram.types import Message
+from aiogram.types import Message, CallbackQuery
 from aiogram.dispatcher import FSMContext
 from states.state import SetWatermark
 from utlis.image_converter import async_image_process
 from .routes import position, color, opacity, font, fontsize, messages
 
 
-async def starting(msg: Message):
+async def starting_from_command(msg: Message):
     await msg.answer(**messages.get("starting"))
+    await SetWatermark.get_pic.set()
+
+
+async def starting_from_callback(callback_query: CallbackQuery):
+    await callback_query.bot.send_message(
+        chat_id=callback_query.from_user.id,
+        **messages.get("starting")
+    )
     await SetWatermark.get_pic.set()
 
 
