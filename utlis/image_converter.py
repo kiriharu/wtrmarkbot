@@ -1,27 +1,42 @@
 from concurrent.futures import ThreadPoolExecutor
 from functools import partial
+from enum import IntEnum
 from PIL import ImageFont, ImageDraw, Image
 from config import MARGIN
 pool = ThreadPoolExecutor()
 
 
-def get_xy(position_num, width, height, text_width, text_height) -> tuple:
+class Side(IntEnum):
+    CENTER = 0
+    TOP = 1
+    BOTTOM = 4
+    LEFT = 2
+    RIGHT = 8
 
-    if position_num == 1:
-        # Сверху в левом углу
-        return 0 + MARGIN, 0 + MARGIN
-    if position_num == 2:
-        # Сверху в правом углу
-        return width - text_width - MARGIN, 0 + MARGIN
-    if position_num == 3:
-        # Снизу в левом углу
-        return 0 + MARGIN, height - text_height - MARGIN
-    if position_num == 4:
-        # Снизу в правом углу
-        return width - text_width - MARGIN, height - text_height - MARGIN
-    if position_num == 5:
-        # По центру
-        return (width - text_width)//2, (height - text_width)//2
+    TOP_LEFT = TOP | LEFT
+    TOP_RIGHT = TOP | RIGHT
+    BOTTOM_LEFT = BOTTOM | LEFT
+    BOTTOM_RIGHT = BOTTOM | RIGHT
+
+
+def get_xy(position: Union[int, Side],
+           width: int,
+           height: int,
+           text_width: int,
+           text_height: int,) -> Tuple[int, int]:
+    position = Side(position)
+    x, y = (width - text_width)//2, (height - text_width)//2
+
+    if position & Side.TOP:
+        y = 0 + MARGIN
+    elif position & Side.BOTTOM:
+        y = height - text_height - MARGIN
+    if position & Side.LEFT:
+        x = 0 + MARGIN
+    elif position & Side.RIGHT:
+        x = width - text_width - MARGIN
+
+    return x, y
 
 
 def set_watermark(img_path, position, color, font, size, text):
