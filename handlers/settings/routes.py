@@ -5,6 +5,7 @@ from aiogram.dispatcher import FSMContext
 from middlewares.userdata import userdata_required
 from aiogram import Dispatcher
 from aiogram.types import ContentTypes
+from keyboards.inline.menu import settings_menu
 
 
 class SettingsRoute(Route):
@@ -46,5 +47,10 @@ class SettingsRoute(Route):
         await User.filter(
             telegram_id=user.telegram_id
         ).update(**{self.name: validated_text})
-        await msg.reply("Настройки обновлены")
+
+        updated_user = await User.filter(telegram_id=user.telegram_id).get()
+
+        await msg.reply(
+            "Настройки обновлены", reply_markup=settings_menu(updated_user)
+        )
         await state.finish()
