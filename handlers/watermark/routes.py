@@ -6,6 +6,8 @@ from config import positions, TEXT_COLORS, FONTS, MAX_FONT_SIZE
 from typing import Optional
 
 
+# TODO: to utils
+
 def check_in(text: str, _list: list) -> Optional[str]:
     if text in _list:
         return text
@@ -55,6 +57,8 @@ messages = {
 
 class TextRoute:
 
+    state_obj = SetWatermark
+
     def __init__(
             self,
             name: str,
@@ -68,16 +72,13 @@ class TextRoute:
         self.next_call_message_args = next_call_message_args
 
     async def handle(self, msg: Message, fsm: FSMContext):
-        text = msg.text
-        validated_text = self.validator(text)
+        validated_text = self.validator(msg.text)
         if not validated_text:
             return await msg.reply(**self.fail_message_args)
-
         await fsm.update_data(
             data={self.name: validated_text}
         )
-
-        await SetWatermark.next()
+        await self.state_obj.next()
         await msg.reply(**self.next_call_message_args)
 
 
