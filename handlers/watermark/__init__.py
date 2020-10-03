@@ -8,9 +8,9 @@ from .watermark import (
     get_picture,
     get_position,
     get_color,
-    set_opacity,
-    set_font,
-    set_fontsize,
+    get_opacity,
+    get_font,
+    get_fontsize,
     set_text
 )
 
@@ -35,27 +35,27 @@ def setup(dp: Dispatcher):
         content_types=ContentTypes.PHOTO
     )
     dp.register_message_handler(
-        get_position,
+        get_position.handle,
         state=SetWatermark.set_position,
         content_types=ContentTypes.TEXT
     )
     dp.register_message_handler(
-        get_color,
+        get_color.handle,
         state=SetWatermark.set_textcolor,
         content_types=ContentTypes.TEXT
     )
     dp.register_message_handler(
-        set_opacity,
+        get_opacity.handle,
         state=SetWatermark.set_opacity,
         content_types=ContentTypes.TEXT
     )
     dp.register_message_handler(
-        set_font,
+        get_font.handle,
         state=SetWatermark.set_font,
         content_types=ContentTypes.TEXT
     )
     dp.register_message_handler(
-        set_fontsize,
+        get_fontsize.handle,
         state=SetWatermark.set_fontsize,
         content_types=ContentTypes.TEXT
     )

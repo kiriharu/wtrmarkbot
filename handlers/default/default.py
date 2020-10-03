@@ -1,8 +1,8 @@
 from aiogram.types import Message, CallbackQuery
-from config import STARTING_MESSAGE
+from messages import STARTING_MESSAGE
 from middlewares.userdata import userdata_required
 from models.user import User
-from keyboards.inline.menu import settings_menu, main_menu
+from keyboards.inline.menu import main_menu
 
 
 @userdata_required

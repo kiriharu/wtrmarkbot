@@ -1,6 +1,5 @@
 from typing import Any, Optional
 from aiogram.types import Message
-from aiogram.dispatcher import FSMContext
 
 
 class Route:

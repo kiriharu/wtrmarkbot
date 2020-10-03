@@ -3,9 +3,7 @@ from states.state import SettingsState
 from aiogram.types import Message, CallbackQuery
 from models.user import User
 from aiogram.dispatcher import FSMContext
-from config import TEXT_COLORS
-from handlers.watermark.routes import messages
-from states.state import SetColor
+from middlewares.userdata import userdata_required
 
 
 class SettingsRoute(Route):
@@ -27,6 +25,7 @@ class SettingsRoute(Route):
         )
         await self.state_obj.input_state.set()
 
+    @userdata_required
     async def handle(self, msg: Message, state: FSMContext, user: User):
         if not (validated_text := await self.validate(msg)):
             return
@@ -35,11 +34,3 @@ class SettingsRoute(Route):
         ).update(**{self.name: validated_text})
         await msg.reply("Настройки обновлены")
         await state.finish()
-
-
-color = SettingsRoute(
-    "color",
-    TEXT_COLORS.get,
-    messages.get("color"),
-    SetColor
-)
