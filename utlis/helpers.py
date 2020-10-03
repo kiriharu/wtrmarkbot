@@ -1,4 +1,10 @@
-from typing import Optional
+from typing import Optional, Any
+
+
+def get_key_by_value(d: dict, v: Any) -> Optional[Any]:
+    for key, value in d.items():
+        if value == v:
+            return key
 
 
 def check_in(text: str, _list: list) -> Optional[str]:

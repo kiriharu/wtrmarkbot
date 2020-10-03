@@ -5,19 +5,19 @@ from models.user import User
 from .routes import SettingsRoute
 from consts import TEXT_COLORS, POSITIONS, FONTS, MAX_FONT_SIZE
 from messages import routes_messages
-from states.state import SetColor, SetPosition, SetOpacity, SetFont, SetFontSize, SetText
-from utlis.helpers import validate_number, check_in
+from states.settings import SetColor, SetPosition, SetOpacity, SetFont, SetFontSize, SetText
+from utlis.helpers import validate_number, check_in, get_key_by_value
 
 configure_position = SettingsRoute(
     "position",
-    POSITIONS.get,
+    lambda text: get_key_by_value(POSITIONS, POSITIONS.get(text)),
     routes_messages.get("position"),
     SetPosition
 )
 
 configure_color = SettingsRoute(
     "color",
-    TEXT_COLORS.get,
+    lambda text: get_key_by_value(TEXT_COLORS, TEXT_COLORS.get(text)),
     routes_messages.get("color"),
     SetColor
 )

@@ -31,7 +31,7 @@ class SettingsRoute(Route):
 
         dp.register_callback_query_handler(
             self.join,
-            lambda c: c.data and c.data.startswith(self.name)
+            lambda c: c.data and c.data == self.name
         )
 
         dp.register_message_handler(

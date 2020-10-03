@@ -14,6 +14,7 @@ def main_menu() -> InlineKeyboardMarkup:
     )
 
 
+# TODO: InlineKeyboardButton(f"🧙Запустить мастер настройки", callback_data="master"),
 def settings_menu(user: User) -> InlineKeyboardMarkup:
     return inline_kbrd().add(
         InlineKeyboardButton(f"👉Позиция: {user.position}", callback_data="position"),
@@ -22,6 +23,5 @@ def settings_menu(user: User) -> InlineKeyboardMarkup:
         InlineKeyboardButton(f"✏Шрифт: {user.font}", callback_data="font"),
         InlineKeyboardButton(f"📈Размер шрифта: {user.fontsize}", callback_data="fontsize"),
         InlineKeyboardButton(f"🗒Текст: {user.text}", callback_data="text"),
-        InlineKeyboardButton(f"🧙Запустить мастер настройки", callback_data="master"),
         InlineKeyboardButton(f"🌠В меню", callback_data="main_menu")
     )
