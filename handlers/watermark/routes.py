@@ -19,6 +19,8 @@ def validate_number(num: str, max_num: int = 255) -> Optional[int]:
         return int_num
 
 
+# TODO: to consts.py or config.py
+
 messages = {
     "starting": dict(
         text="Скидывай картиночку.",
@@ -70,6 +72,7 @@ class TextRoute:
         validated_text = self.validator(text)
         if not validated_text:
             return await msg.reply(**self.fail_message_args)
+
         await fsm.update_data(
             data={self.name: validated_text}
         )

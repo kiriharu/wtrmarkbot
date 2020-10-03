@@ -9,3 +9,7 @@ class SetWatermark(StatesGroup):
     set_font = State()
     set_fontsize = State()
     set_text = State()
+
+
+class SetColor(StatesGroup):
+    set_color = State()
