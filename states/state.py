@@ -11,5 +11,9 @@ class SetWatermark(StatesGroup):
     set_text = State()
 
 
-class SetColor(StatesGroup):
-    set_color = State()
+class SettingsState(StatesGroup):
+    input_state = State()
+
+
+class SetColor(SettingsState):
+    pass

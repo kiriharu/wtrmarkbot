@@ -24,6 +24,6 @@ def setup(dp: Dispatcher):
 
     dp.register_message_handler(
         set_color_state,
-        state=SetColor.set_color,
+        state=SetColor.input_state,
         content_types=ContentTypes.TEXT
     )

@@ -26,6 +26,7 @@ async def get_picture(msg: Message, state: FSMContext):
 
 
 async def get_position(msg: Message, state: FSMContext):
+    # TODO: try set handler in dp (__init__.py)
     await position.handle(msg, state)
 
 

@@ -4,6 +4,7 @@ from states.state import SetWatermark
 from keyboards.reply.watermark import watermark_position, colors, fonts
 from config import positions, TEXT_COLORS, FONTS, MAX_FONT_SIZE
 from typing import Optional
+from utlis.route import Route
 
 
 # TODO: to utils
@@ -55,48 +56,44 @@ messages = {
 }
 
 
-class TextRoute:
+class TextRoute(Route):
 
-    state_obj = SetWatermark
-
-    def __init__(
-            self,
-            name: str,
-            validator: callable,
-            fail_message_args: dict,
-            next_call_message_args: dict
-    ):
-        self.name = name
-        self.validator = validator
-        self.fail_message_args = fail_message_args
-        self.next_call_message_args = next_call_message_args
+    def __init__(self,
+                 name: str,
+                 validator: callable,
+                 fail_msg: dict,
+                 nxt_call_msg: dict
+                 ):
+        super().__init__(
+            name, validator, fail_msg, SetWatermark
+        )
+        self.nxt_call_msg = nxt_call_msg
 
     async def handle(self, msg: Message, fsm: FSMContext):
-        validated_text = self.validator(msg.text)
-        if not validated_text:
-            return await msg.reply(**self.fail_message_args)
+        if not (validated_text := await self.validate(msg)):
+            return
         await fsm.update_data(
             data={self.name: validated_text}
         )
         await self.state_obj.next()
-        await msg.reply(**self.next_call_message_args)
+        await msg.reply(**self.nxt_call_msg)
 
 
 position = TextRoute(
     "position",
-    lambda text: positions.get(text),
+    positions.get,
     messages.get("position"),
     messages.get("color")
 )
 color = TextRoute(
     "color",
-    lambda text: TEXT_COLORS.get(text),
+    TEXT_COLORS.get,
     messages.get("color"),
     messages.get("opacity")
 )
 opacity = TextRoute(
     "opacity",
-    lambda text: validate_number(text),
+    validate_number,
     messages.get("opacity"),
     messages.get("font")
 )
