@@ -10,10 +10,28 @@ class SetWatermark(StatesGroup):
     set_fontsize = State()
     set_text = State()
 
+# TIP!: Наследование от базового класса вызывает какие-то непонятные баги :/
 
-class SettingsState(StatesGroup):
+
+class SetColor(StatesGroup):
     input_state = State()
 
 
-class SetColor(SettingsState):
-    pass
+class SetPosition(StatesGroup):
+    input_state = State()
+
+
+class SetOpacity(StatesGroup):
+    input_state = State()
+
+
+class SetFont(StatesGroup):
+    input_state = State()
+
+
+class SetFontSize(StatesGroup):
+    input_state = State()
+
+
+class SetText(StatesGroup):
+    input_state = State()

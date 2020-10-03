@@ -18,6 +18,9 @@ class Route:
     async def handle(self, *args, **kwargs):
         pass
 
+    def register(self, *args, **kwargs):
+        pass
+
     async def validate(self, msg: Message) -> Optional[Any]:
         validated_text = self.validator(msg.text)
         if not validated_text:

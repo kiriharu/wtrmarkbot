@@ -3,15 +3,51 @@ from middlewares.userdata import userdata_required
 from aiogram.types import Message, CallbackQuery
 from models.user import User
 from .routes import SettingsRoute
-from consts import TEXT_COLORS
+from consts import TEXT_COLORS, POSITIONS, FONTS, MAX_FONT_SIZE
 from messages import routes_messages
-from states.state import SetColor
+from states.state import SetColor, SetPosition, SetOpacity, SetFont, SetFontSize, SetText
+from utlis.helpers import validate_number, check_in
 
-color = SettingsRoute(
+configure_position = SettingsRoute(
+    "position",
+    POSITIONS.get,
+    routes_messages.get("position"),
+    SetPosition
+)
+
+configure_color = SettingsRoute(
     "color",
     TEXT_COLORS.get,
     routes_messages.get("color"),
     SetColor
+)
+
+configure_opacity = SettingsRoute(
+    "opacity",
+    validate_number,
+    routes_messages.get("opacity"),
+    SetOpacity
+)
+
+configure_font = SettingsRoute(
+    "font",
+    lambda text: check_in(text, FONTS),
+    routes_messages.get("font"),
+    SetFont
+)
+
+configure_fontsize = SettingsRoute(
+    "fontsize",
+    lambda text: validate_number(text, MAX_FONT_SIZE),
+    routes_messages.get("fontsize"),
+    SetFontSize
+)
+
+configure_text = SettingsRoute(
+    "text",
+    lambda text: text,
+    routes_messages.get("text"),
+    SetText
 )
 
 

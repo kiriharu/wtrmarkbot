@@ -4,12 +4,12 @@ from states.state import SetWatermark
 from utlis.image_converter import async_image_process
 from .routes import TextRoute
 from messages import routes_messages
-from consts import positions, TEXT_COLORS, FONTS, MAX_FONT_SIZE
+from consts import POSITIONS, TEXT_COLORS, FONTS, MAX_FONT_SIZE
 from utlis.helpers import validate_number, check_in
 
 get_position = TextRoute(
     "position",
-    positions.get,
+    POSITIONS.get,
     routes_messages.get("position"),
     routes_messages.get("color")
 )

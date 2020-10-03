@@ -1,9 +1,10 @@
 from aiogram import Dispatcher
 from .settings import settings_from_callback, settings_from_command
 
-from .settings import color
-from states.state import SetColor
-from aiogram.types import ContentTypes
+from .settings import (
+    configure_position, configure_color, configure_opacity,
+    configure_font, configure_fontsize, configure_text
+)
 
 
 def setup(dp: Dispatcher):
@@ -17,13 +18,9 @@ def setup(dp: Dispatcher):
         lambda c: c.data and c.data.startswith('settings_menu')
     )
 
-    dp.register_callback_query_handler(
-        color.join,
-        lambda c: c.data and c.data.startswith('color')
-    )
-
-    dp.register_message_handler(
-        color.handle,
-        state=SetColor.input_state,
-        content_types=ContentTypes.TEXT
-    )
+    configure_position.register(dp)
+    configure_color.register(dp)
+    configure_opacity.register(dp)
+    configure_font.register(dp)
+    configure_fontsize.register(dp)
+    configure_text.register(dp)
