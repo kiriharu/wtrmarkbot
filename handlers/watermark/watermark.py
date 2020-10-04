@@ -1,11 +1,11 @@
 from aiogram.types import Message, CallbackQuery
 from aiogram.dispatcher import FSMContext
 from states.watermark import SetWatermark
-from utlis.image_converter import async_image_process
 from .routes import TextRoute
 from messages import routes_messages
 from consts import POSITIONS, TEXT_COLORS, FONTS, MAX_FONT_SIZE
 from utlis.helpers import validate_number, check_in
+from utlis.image_converter import watermark_process
 
 get_position = TextRoute(
     "position",
@@ -60,24 +60,11 @@ async def get_picture(msg: Message, state: FSMContext):
 
 
 async def set_text(msg: Message, state: FSMContext):
-    text = msg.text
     data = await state.get_data()
-    data.get("color").append(data.get("opacity"))
-    path_to_pic = f"pic/{data.get('photo').file_id}"
 
-    await data.get('photo').download(path_to_pic)
-    watermarked_photo = await async_image_process(
-        msg.bot.loop,
-        path_to_pic,
-        data.get("position"),
-        tuple(data.get("color")),
-        f"fonts/{data.get('font')}.ttf",
-        data.get("fontsize"),
-        text
+    await watermark_process(
+        msg, data.get('photo'), data.get("position"), data.get("color"),
+        data.get("opacity"), data.get("font"), data.get("fontsize"), msg.text
     )
-    sended_pic = await msg.bot.send_photo(
-        msg.chat.id,
-        open(watermarked_photo, "rb")
-    )
-    await sended_pic.reply(**routes_messages.get("sendpic"))
+
     await state.finish()
