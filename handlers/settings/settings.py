@@ -10,7 +10,7 @@ from utlis.helpers import validate_number, check_in, get_key_by_value
 
 configure_position = SettingsRoute(
     "position",
-    lambda text: get_key_by_value(POSITIONS, POSITIONS.get(text)),
+    POSITIONS.get,
     routes_messages.get("position"),
     SetPosition
 )
