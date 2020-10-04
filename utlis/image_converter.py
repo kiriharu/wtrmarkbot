@@ -1,7 +1,7 @@
 from concurrent.futures import ThreadPoolExecutor
 from functools import partial
 from PIL import ImageFont, ImageDraw, Image
-from config import MARGIN
+from consts import MARGIN
 pool = ThreadPoolExecutor()
 
 
@@ -25,6 +25,12 @@ def get_xy(position_num, width, height, text_width, text_height) -> tuple:
 
 
 def set_watermark(img_path, position, color, font, size, text):
+    print(img_path)
+    print(position)
+    print(color)
+    print(font)
+    print(size)
+    print(text)
     im = Image.open(img_path).convert("RGBA")
     width, height = im.size
 

@@ -1,55 +1,17 @@
 from aiogram import Dispatcher
-from states.state import SetWatermark
-from aiogram.types import ContentTypes
-from .starting import start
-
-from .process import (
-    starting,
-    get_picture,
-    get_position,
-    get_color,
-    set_opacity,
-    set_font,
-    set_fontsize,
-    set_text
+from .default import (
+    start_from_command,
+    start_from_callback,
 )
 
 
 def setup(dp: Dispatcher):
-    dp.register_message_handler(start, commands=['start'])
-    dp.register_message_handler(starting, commands=['watermark'])
+
+    # Команды
     dp.register_message_handler(
-        get_picture,
-        state=SetWatermark.get_pic,
-        content_types=ContentTypes.PHOTO
+        start_from_command, commands=['start']
     )
-    dp.register_message_handler(
-        get_position,
-        state=SetWatermark.set_position,
-        content_types=ContentTypes.TEXT
-    )
-    dp.register_message_handler(
-        get_color,
-        state=SetWatermark.set_textcolor,
-        content_types=ContentTypes.TEXT
-    )
-    dp.register_message_handler(
-        set_opacity,
-        state=SetWatermark.set_opacity,
-        content_types=ContentTypes.TEXT
-    )
-    dp.register_message_handler(
-        set_font,
-        state=SetWatermark.set_font,
-        content_types=ContentTypes.TEXT
-    )
-    dp.register_message_handler(
-        set_fontsize,
-        state=SetWatermark.set_fontsize,
-        content_types=ContentTypes.TEXT
-    )
-    dp.register_message_handler(
-        set_text,
-        state=SetWatermark.set_text,
-        content_types=ContentTypes.TEXT
+    dp.register_callback_query_handler(
+        start_from_callback,
+        lambda c: c.data and c.data.startswith('main_menu')
     )

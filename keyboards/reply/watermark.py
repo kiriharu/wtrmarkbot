@@ -1,5 +1,5 @@
 from aiogram.types import ReplyKeyboardMarkup
-from config import positions, TEXT_COLORS, FONTS
+from consts import POSITIONS, TEXT_COLORS, FONTS
 
 
 def keyboard() -> ReplyKeyboardMarkup:
@@ -11,7 +11,7 @@ def keyboard() -> ReplyKeyboardMarkup:
 
 
 def watermark_position() -> ReplyKeyboardMarkup:
-    return keyboard().add(*positions)
+    return keyboard().add(*POSITIONS)
 
 
 def fonts() -> ReplyKeyboardMarkup:
