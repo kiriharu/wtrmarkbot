@@ -23,7 +23,7 @@ class Route:
 
     async def validate(self, msg: Message) -> Optional[Any]:
         validated_text = self.validator(msg.text)
-        if not validated_text:
+        if validated_text is None:
             await msg.reply(**self.fail_message_args)
             return None
         return validated_text

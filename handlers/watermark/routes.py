@@ -18,7 +18,7 @@ class TextRoute(Route):
         self.nxt_call_msg = nxt_call_msg
 
     async def handle(self, msg: Message, state: FSMContext):
-        if not (validated_text := await self.validate(msg)):
+        if (validated_text := await self.validate(msg)) is None:
             return
         await state.update_data(
             data={self.name: validated_text}

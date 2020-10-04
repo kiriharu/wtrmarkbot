@@ -42,7 +42,7 @@ class SettingsRoute(Route):
 
     @userdata_required
     async def handle(self, msg: Message, state: FSMContext, user: User):
-        if not (validated_text := await self.validate(msg)):
+        if (validated_text := await self.validate(msg)) is None:
             return
         await User.filter(
             telegram_id=user.telegram_id
