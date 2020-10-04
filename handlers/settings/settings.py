@@ -61,7 +61,6 @@ async def settings_from_callback(callback_query: CallbackQuery, user: User):
     )
 
 
-# TODO: Сделать отображение позиции, а не номера позиции
 @userdata_required
 async def settings_from_command(msg: Message, user: User):
     await msg.answer(
