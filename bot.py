@@ -18,6 +18,7 @@ def on_startup():
     handlers.default.setup(dp)
     handlers.settings.setup(dp)
     handlers.watermark.setup(dp)
+    handlers.swatermark.setup(dp)
     dp.middleware.setup(UserMiddleware())
 
 

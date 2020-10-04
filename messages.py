@@ -1,5 +1,6 @@
 from aiogram.types import ReplyKeyboardRemove
 from keyboards.reply.watermark import watermark_position, colors, fonts
+from keyboards.inline.menu import generate_buttons
 from consts import MAX_FONT_SIZE
 
 STARTING_MESSAGE = "TODO: заполни стартовое сообщени. А пока пиши /watermark чтобы наложить вотерку"
@@ -32,5 +33,9 @@ routes_messages = {
     "text": dict(
         text=f"Напишите текст вотермарки",
         reply_markup=ReplyKeyboardRemove()
+    ),
+    "sendpic": dict(
+        text="Вот твоё фото с вотермаркой. Хочешь ещё?",
+        reply_markup=generate_buttons()
     )
 }

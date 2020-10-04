@@ -55,8 +55,8 @@ async def starting_from_callback(callback_query: CallbackQuery):
 async def get_picture(msg: Message, state: FSMContext):
     last_photo = msg.photo[-1]
     await state.update_data(photo=last_photo)
-    await SetWatermark.next()
     await msg.reply(**routes_messages.get("position"))
+    await SetWatermark.next()
 
 
 async def set_text(msg: Message, state: FSMContext):
@@ -79,6 +79,5 @@ async def set_text(msg: Message, state: FSMContext):
         msg.chat.id,
         open(watermarked_photo, "rb")
     )
-    await sended_pic.reply("Вот твоё фото с вотермаркой. "
-                           "Клацай /start чтобы поставить вотермарку на ещё одно фото.")
+    await sended_pic.reply(**routes_messages.get("sendpic"))
     await state.finish()
