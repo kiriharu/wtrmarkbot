@@ -10,8 +10,8 @@
 
 
 <p align="center">
-  <a href="https://github.com/psf/black">
-    <img src="https://img.shields.io/static/v1?label=Made with&message=aiogram&color=blue">
+  <a href="https://github.com/aiogram/aiogram">
+    <img src="https://img.shields.io/badge/Made%20with-aiogram-blue">
   </a>
 </p>
 
