@@ -23,8 +23,13 @@ def on_startup():
 
 
 async def database_init():
+    if config.MYSQL_HOST is not None:
+        db_url = f"mysql://{config.MYSQL_USER}:{config.MYSQL_PASSWORD}@" \
+                 f"{config.MYSQL_HOST}:{config.MYSQL_PORT}/{config.MYSQL_DATABASE}"
+    else:
+        db_url = "sqlite://db.sqlite3"
     await Tortoise.init(
-        db_url='sqlite://db.sqlite3',
+        db_url=db_url,
         modules={
             'model': ['models.user']
         }
