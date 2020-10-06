@@ -4,12 +4,16 @@ from middlewares.userdata import userdata_required
 from models.user import User
 from keyboards.inline.menu import main_menu
 
+# TODO: start message to routes_messages
+
 
 @userdata_required
 async def start_from_command(msg: Message, user: User):
     await msg.answer(
         STARTING_MESSAGE,
-        reply_markup=main_menu()
+        reply_markup=main_menu(),
+        parse_mode="Markdown",
+        disable_web_page_preview=True
     )
 
 
@@ -19,5 +23,7 @@ async def start_from_callback(callback_query: CallbackQuery, user: User):
         chat_id=callback_query.from_user.id,
         message_id=callback_query.message.message_id,
         text=STARTING_MESSAGE,
-        reply_markup=main_menu()
+        reply_markup=main_menu(),
+        parse_mode="Markdown",
+        disable_web_page_preview=True
     )
