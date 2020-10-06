@@ -1,0 +1,14 @@
+version: '3.3'
+services:
+  bot:
+    build: .
+    command: python bot.py
+    env_file:
+      - .env
+    depends_on:
+      - db
+  db:
+    image: mariadb
+    restart: always
+    env_file:
+      - .env
