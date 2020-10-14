@@ -14,7 +14,7 @@ def get_xy(position: Union[int, Side],
            text_width: int,
            text_height: int,) -> Tuple[int, int]:
     position = Side(position)
-    x, y = (width - text_width)//2, (height - text_width)//2
+    x, y = (width - text_width)//2, (height - text_height)//2
 
     if position & Side.TOP:
         y = 0 + MARGIN
