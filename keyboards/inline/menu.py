@@ -16,7 +16,7 @@ def main_menu() -> InlineKeyboardMarkup:
             callback_data="watermark_default"
         ),
         InlineKeyboardButton(
-            "💫Сгенерировать картинку с настроек",
+            "💫Сгенерировать картинку с настройками",
             callback_data="watermark_from_settings"
         )
     )
