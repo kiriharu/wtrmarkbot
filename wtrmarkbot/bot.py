@@ -49,7 +49,6 @@ async def on_startup(disp: Dispatcher):
     # Register you handlers here.
     handlers.default.setup(disp)
     handlers.settings.setup(disp)
-    handlers.watermark.setup(disp)
     handlers.swatermark.setup(disp)
     dp.middleware.setup(UserMiddleware())
 

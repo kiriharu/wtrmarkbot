@@ -1,5 +1,6 @@
 from aiogram.types import Message, CallbackQuery
 from aiogram.dispatcher import FSMContext
+
 from wtrmarkbot.states.swatermark import SWatermarkState
 from wtrmarkbot.messages import routes_messages
 from wtrmarkbot.middlewares.userdata import userdata_required
@@ -13,11 +14,6 @@ async def from_callback(callback_query: CallbackQuery):
         chat_id=callback_query.from_user.id,
         **routes_messages.get("starting")
     )
-    await SWatermarkState.sget_pic.set()
-
-
-async def from_command(msg: Message):
-    await msg.answer(**routes_messages.get("starting"))
     await SWatermarkState.sget_pic.set()
 
 

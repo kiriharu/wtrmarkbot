@@ -1,14 +1,11 @@
 from aiogram import Dispatcher
-from .swatermark import from_command, from_callback, process
-from wtrmarkbot.states.swatermark import SWatermarkState
 from aiogram.types import ContentTypes
+
+from wtrmarkbot.handlers.swatermark.swatermark import from_callback, process
+from wtrmarkbot.states.swatermark import SWatermarkState
 
 
 def setup(dp: Dispatcher):
-    dp.register_message_handler(
-        from_command, commands=['swatermark']
-    )
-
     dp.register_callback_query_handler(
         from_callback,
         lambda c: c.data and c.data.startswith('watermark_from_settings')

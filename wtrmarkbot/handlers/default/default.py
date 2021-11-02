@@ -4,8 +4,6 @@ from wtrmarkbot.middlewares.userdata import userdata_required
 from wtrmarkbot.models.user import User
 from wtrmarkbot.keyboards.inline.menu import main_menu
 
-# TODO: start message to routes_messages
-
 
 @userdata_required
 async def start_from_command(msg: Message, user: User):

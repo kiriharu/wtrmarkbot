@@ -11,18 +11,9 @@ def inline_kbrd() -> InlineKeyboardMarkup:
 def main_menu() -> InlineKeyboardMarkup:
     return inline_kbrd().add(
         InlineKeyboardButton("📖Настройки", callback_data="settings_menu"),
-        InlineKeyboardButton(
-            "🔍Сгенерировать без настроек",
-            callback_data="watermark_default"
-        ),
-        InlineKeyboardButton(
-            "💫Сгенерировать картинку с настроек",
-            callback_data="watermark_from_settings"
-        )
     )
 
 
-# TODO: InlineKeyboardButton(f"🧙Запустить мастер настройки", callback_data="master"),
 def settings_menu(user: User) -> InlineKeyboardMarkup:
     return inline_kbrd().add(
         InlineKeyboardButton(f"👉Позиция: {get_key_by_value(POSITIONS, user.position)}", callback_data="position"),
