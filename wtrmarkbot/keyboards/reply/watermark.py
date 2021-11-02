@@ -1,5 +1,6 @@
 from aiogram.types import ReplyKeyboardMarkup
 from wtrmarkbot.consts import POSITIONS, TEXT_COLORS, FONTS
+from wtrmarkbot.models import ResultType
 
 
 def keyboard() -> ReplyKeyboardMarkup:
@@ -20,3 +21,7 @@ def fonts() -> ReplyKeyboardMarkup:
 
 def colors() -> ReplyKeyboardMarkup:
     return keyboard().add(*TEXT_COLORS.keys())
+
+
+def result_types() -> ReplyKeyboardMarkup:
+    return keyboard().add(*ResultType.get_results())

@@ -22,5 +22,6 @@ def settings_menu(user: User) -> InlineKeyboardMarkup:
         InlineKeyboardButton(f"✏Шрифт: {user.font}", callback_data="font"),
         InlineKeyboardButton(f"📈Размер шрифта: {user.fontsize}", callback_data="fontsize"),
         InlineKeyboardButton(f"🗒Текст: {user.text}", callback_data="text"),
+        InlineKeyboardButton(f"🖼Формат ответа: {user.result_type}", callback_data="result_type"),
         InlineKeyboardButton(f"🌠В меню", callback_data="main_menu")
     )

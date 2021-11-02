@@ -1,4 +1,15 @@
+from enum import Enum
+
 from tortoise import fields, Model
+
+
+class ResultType(str, Enum):
+    PIC = "Картинкой"
+    DOC = "Документом"
+
+    @classmethod
+    def get_results(cls) -> list[str]:
+        return list(map(lambda x: x.value, list(cls)))
 
 
 class User(Model):
@@ -9,3 +20,4 @@ class User(Model):
     font = fields.CharField(max_length=255, default="Lobster")
     fontsize = fields.CharField(max_length=255, default=40)
     text = fields.CharField(max_length=255, default="Sample text...")
+    result_type = fields.CharEnumField(ResultType, default=ResultType.DOC)

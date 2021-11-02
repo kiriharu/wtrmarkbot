@@ -11,10 +11,11 @@ from wtrmarkbot.keyboards.inline.menu import settings_menu
 class SettingsRoute(Route):
 
     def __init__(
-            self, name: str,
-            validator: callable,
-            fail_msg: dict,
-            state
+        self,
+        name: str,
+        validator: callable,
+        fail_msg: dict,
+        state
     ):
         super().__init__(
             name, validator, fail_msg, state

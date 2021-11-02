@@ -3,7 +3,8 @@ from .settings import settings_from_callback, settings_from_command
 
 from .settings import (
     configure_position, configure_color, configure_opacity,
-    configure_font, configure_fontsize, configure_text
+    configure_font, configure_fontsize, configure_text,
+    configure_result_type
 )
 
 
@@ -24,3 +25,4 @@ def setup(dp: Dispatcher):
     configure_font.register(dp)
     configure_fontsize.register(dp)
     configure_text.register(dp)
+    configure_result_type.register(dp)

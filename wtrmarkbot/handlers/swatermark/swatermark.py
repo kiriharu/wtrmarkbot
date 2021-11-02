@@ -14,7 +14,7 @@ async def process(msg: Message, data: Union[PhotoSize, Document], user: User):
     try:
         await watermark_process(
             msg, data, user.position, TEXT_COLORS[user.color], user.opacity,
-            user.font, user.fontsize, user.text
+            user.font, user.fontsize, user.text, user.result_type
         )
     except UnidentifiedImageError:
         await msg.answer(

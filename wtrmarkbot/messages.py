@@ -1,5 +1,8 @@
 from aiogram.types import ReplyKeyboardRemove
-from wtrmarkbot.keyboards.reply.watermark import watermark_position, colors, fonts
+from wtrmarkbot.keyboards.reply.watermark import (
+    watermark_position, colors,
+    fonts, result_types
+)
 from wtrmarkbot.keyboards.inline.menu import main_menu
 from consts import MAX_FONT_SIZE
 
@@ -15,36 +18,36 @@ STARTING_MESSAGE = f"Привет! Добро пожаловать в @wtrmarkbo
                    f"Сделал @kiriharu with <3. [Репозиторий бота](https://github.com/kiriharu/wtrmarkbot)."
 
 routes_messages = {
-    "starting": dict(
-        text="💫 Можешь скидывать картинку.",
-        reply_markup=ReplyKeyboardRemove(),
-    ),
     "position": dict(
-        text="↕️ Выберите позицию вотермарки: ",
+        text="↕️ Выбери позицию вотермарки: ",
         reply_markup=watermark_position()
     ),
     "color": dict(
-        text="🏁 Выберите цвет текста",
+        text="🏁 Выбери цвет текста",
         reply_markup=colors()
     ),
     "opacity": dict(
-        text="➿ Установите прозрачность цифрой от 1 до 255 (255 непрозрачный, 1 - полностью прозрачный)",
+        text="➿ Установи прозрачность цифрой от 1 до 255 (255 непрозрачный, 1 - полностью прозрачный)",
         reply_markup=ReplyKeyboardRemove()
     ),
     "font": dict(
-        text="✍️ Выберите шрифт",
+        text="✍️ Выбери шрифт",
         reply_markup=fonts()
     ),
     "fontsize": dict(
-        text=f"✍️ Выберите размер шрифта (до {MAX_FONT_SIZE})",
+        text=f"✍️ Выбери размер шрифта (до {MAX_FONT_SIZE})",
         reply_markup=ReplyKeyboardRemove()
     ),
     "text": dict(
-        text=f"💬 Напишите текст вотермарки",
+        text=f"💬 Напиши текст вотермарки",
         reply_markup=ReplyKeyboardRemove()
     ),
     "sendpic": dict(
-        text="💫 Вот твоё фото с вотермаркой. Вроде неплохо, теперь никто не сворует твой контент. Хочешь ещё?",
+        text="💫 Вот твоя картинка с вотермаркой. Вышло неплохо, хочешь ещё? Отправь следующую картинку!",
         reply_markup=main_menu()
+    ),
+    "result_type": dict(
+        text="🖼 Выбери формат ответа",
+        reply_markup=result_types()
     )
 }

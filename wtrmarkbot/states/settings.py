@@ -1,9 +1,6 @@
 from aiogram.dispatcher.filters.state import State, StatesGroup
 
 
-# TIP!: Наследование от базового класса вызывает какие-то непонятные баги :/
-
-
 class SetColor(StatesGroup):
     input_state = State()
 
@@ -25,4 +22,8 @@ class SetFontSize(StatesGroup):
 
 
 class SetText(StatesGroup):
+    input_state = State()
+
+
+class SetResultType(StatesGroup):
     input_state = State()

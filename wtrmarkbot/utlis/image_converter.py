@@ -1,19 +1,26 @@
 import asyncio
+from typing import Union, Tuple, Optional
+from io import BytesIO
 from concurrent.futures import ThreadPoolExecutor
 from functools import partial
-from typing import Union, Tuple
+
 from PIL import ImageFont, ImageDraw, Image
+from aiogram.types import Message
+
 from wtrmarkbot.messages import routes_messages
-from io import BytesIO
 from wtrmarkbot.consts import MARGIN, Side
+from wtrmarkbot.models import ResultType
+
 pool = ThreadPoolExecutor()
 
 
-def get_xy(position: Union[int, Side],
-           width: int,
-           height: int,
-           text_width: int,
-           text_height: int,) -> Tuple[int, int]:
+def get_xy(
+    position: Union[int, Side],
+    width: int,
+    height: int,
+    text_width: int,
+    text_height: int,
+) -> Tuple[int, int]:
     position = Side(position)
     x, y = (width - text_width)//2, (height - text_height)//2
 
@@ -64,8 +71,8 @@ async def async_image_process(img_bytes, position, color, font, size, text):
 
 
 async def watermark_process(
-    msg, photo, position, color,
-    opacity, font, fsize, text
+    msg: Message, photo, position, color,
+    opacity, font, fsize, text, result_type: ResultType
 ):
     pic_bytes = BytesIO()
     await photo.download(pic_bytes)
@@ -79,8 +86,16 @@ async def watermark_process(
         int(fsize),
         text
     )
-    sended_pic = await msg.bot.send_photo(
-        msg.chat.id,
-        watermarked_photo
-    )
+    sended_pic: Optional[Message] = None
+    if result_type == ResultType.PIC:
+        sended_pic = await msg.bot.send_photo(
+            msg.chat.id,
+            watermarked_photo
+        )
+    if result_type == ResultType.DOC:
+        sended_pic = await msg.bot.send_document(
+            chat_id=msg.chat.id,
+            document=watermarked_photo,
+            thumb=watermarked_photo
+        )
     await sended_pic.reply(**routes_messages.get("sendpic"))

@@ -1,11 +1,15 @@
+from aiogram.types import Message, CallbackQuery
+
 from wtrmarkbot.keyboards.inline.menu import settings_menu
 from wtrmarkbot.middlewares.userdata import userdata_required
-from aiogram.types import Message, CallbackQuery
-from wtrmarkbot.models.user import User
+from wtrmarkbot.models.user import User, ResultType
 from .routes import SettingsRoute
 from wtrmarkbot.consts import TEXT_COLORS, POSITIONS, FONTS, MAX_FONT_SIZE
 from wtrmarkbot.messages import routes_messages
-from wtrmarkbot.states.settings import SetColor, SetPosition, SetOpacity, SetFont, SetFontSize, SetText
+from wtrmarkbot.states.settings import (
+    SetColor, SetPosition, SetOpacity,
+    SetFont, SetFontSize, SetText, SetResultType
+)
 from wtrmarkbot.utlis.helpers import validate_number, check_in, get_key_by_value
 
 configure_position = SettingsRoute(
@@ -48,6 +52,13 @@ configure_text = SettingsRoute(
     lambda text: text,
     routes_messages.get("text"),
     SetText
+)
+
+configure_result_type = SettingsRoute(
+    "result_type",
+    lambda text: check_in(text, ResultType.get_results()),
+    routes_messages.get("result_type"),
+    SetResultType
 )
 
 
