@@ -15,7 +15,7 @@ from wtrmarkbot.utlis.image_converter import add_watermark
 async def process(msg: Message, data: Union[PhotoSize, Document], user: User):
     try:
         picture = BytesIO()
-        await data.download(picture)
+        await data.download(destination_file=picture)
         watermarked = await add_watermark(
             picture,
             user.position,
