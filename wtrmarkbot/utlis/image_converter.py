@@ -66,34 +66,22 @@ async def async_image_process(img_bytes, position, color, font, size, text):
     )
 
 
-async def watermark_process(
-    msg: Message,
-    photo,
-    position,
-    color,
-    opacity,
-    font,
-    fsize,
-    text,
-    result_type: ResultType,
-):
-    pic_bytes = BytesIO()
-    await photo.download(pic_bytes)
+async def add_watermark(
+    photo: BytesIO,
+    position: str,
+    color: list,
+    opacity: int,
+    font: str,
+    fsize: int,
+    text: str,
+) -> BytesIO:
     color_with_opacity = color.copy()
     color_with_opacity.append(opacity)
-    watermarked_photo = await async_image_process(
-        pic_bytes,
+    return await async_image_process(
+        photo,
         position,
         tuple(color_with_opacity),
         f"fonts/{font}.ttf",
         int(fsize),
         text,
     )
-    sended_pic: Optional[Message] = None
-    if result_type == ResultType.PIC:
-        sended_pic = await msg.bot.send_photo(msg.chat.id, watermarked_photo)
-    if result_type == ResultType.DOC:
-        sended_pic = await msg.bot.send_document(
-            chat_id=msg.chat.id, document=watermarked_photo, thumb=watermarked_photo
-        )
-    await sended_pic.reply(**routes_messages.get("sendpic"))
