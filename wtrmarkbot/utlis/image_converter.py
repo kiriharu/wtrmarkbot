@@ -1,10 +1,12 @@
 import asyncio
+from time import time
 from typing import Union, Tuple, BinaryIO
 from io import BytesIO
 from concurrent.futures import ThreadPoolExecutor
 from functools import partial
 
 from PIL import ImageFont, ImageDraw, Image
+from loguru import logger
 
 from wtrmarkbot.consts import MARGIN, Side
 
@@ -72,9 +74,10 @@ async def add_watermark(
     fsize: int,
     text: str,
 ) -> BytesIO:
+    ts = time()
     color_with_opacity = color.copy()
     color_with_opacity.append(opacity)
-    return await async_image_process(
+    image = await async_image_process(
         photo,
         position,
         tuple(color_with_opacity),
@@ -82,3 +85,7 @@ async def add_watermark(
         int(fsize),
         text,
     )
+    te = time()
+    took = te - ts
+    logger.info(f"Image watermarking took {took}s")
+    return image

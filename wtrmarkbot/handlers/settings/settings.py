@@ -1,4 +1,5 @@
 from aiogram.types import CallbackQuery
+from loguru import logger
 
 from wtrmarkbot.keyboards.inline.menu import settings_menu
 from wtrmarkbot.middlewares.userdata import userdata_required
@@ -58,11 +59,7 @@ configure_result_type = SettingsRoute(
 
 @userdata_required
 async def settings_from_callback(callback_query: CallbackQuery, user: User):
-
-    await callback_query.bot.delete_message(
-        callback_query.from_user.id, callback_query.message.message_id
-    )
-
+    logger.info(f"{user.telegram_id} called settings")
     await callback_query.bot.send_photo(
         chat_id=callback_query.from_user.id,
         photo=await create_example(user),

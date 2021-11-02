@@ -2,6 +2,7 @@ from aiogram import Dispatcher
 from aiogram.types import ContentTypes
 from aiogram.dispatcher import FSMContext
 from aiogram.types import Message, CallbackQuery
+from loguru import logger
 
 from wtrmarkbot.handlers.settings.utils import create_example
 from wtrmarkbot.utlis.route import Route
@@ -15,12 +16,10 @@ class SettingsRoute(Route):
         super().__init__(name, validator, fail_msg, state)
 
     async def join(self, callback: CallbackQuery):
-        await callback.bot.delete_message(
-            callback.from_user.id, callback.message.message_id
-        )
         await callback.bot.send_message(
             chat_id=callback.from_user.id, **self.fail_message_args
         )
+        logger.info(f"{callback.from_user.id} entered state {self.state_obj}")
         await self.state_obj.input_state.set()
         await callback.answer()
 
@@ -45,9 +44,6 @@ class SettingsRoute(Route):
         )
 
         updated_user = await User.filter(telegram_id=user.telegram_id).get()
-        await msg.bot.delete_message(msg.chat.id, msg.message_id)
-        # remove older message
-        await msg.bot.delete_message(msg.chat.id, msg.message_id - 1)
 
         await msg.bot.send_photo(
             chat_id=msg.chat.id,

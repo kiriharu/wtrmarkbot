@@ -1,11 +1,14 @@
 import os
 
+from loguru import logger
+
 from wtrmarkbot.consts import TEXT_COLORS
 from wtrmarkbot.models import User
 from wtrmarkbot.utlis.image_converter import add_watermark
 
 
 async def create_example(user: User):
+    logger.info(f"{user.telegram_id} create example for settings")
     current_dir = os.getcwd()
     example_path = os.path.join(current_dir, "etc", "example.png")
     with open(example_path, "rb") as example:
