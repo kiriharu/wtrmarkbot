@@ -1,12 +1,12 @@
-from keyboards.inline.menu import settings_menu
-from middlewares.userdata import userdata_required
+from wtrmarkbot.keyboards.inline.menu import settings_menu
+from wtrmarkbot.middlewares.userdata import userdata_required
 from aiogram.types import Message, CallbackQuery
-from models.user import User
+from wtrmarkbot.models.user import User
 from .routes import SettingsRoute
-from consts import TEXT_COLORS, POSITIONS, FONTS, MAX_FONT_SIZE
-from messages import routes_messages
-from states.settings import SetColor, SetPosition, SetOpacity, SetFont, SetFontSize, SetText
-from utlis.helpers import validate_number, check_in, get_key_by_value
+from wtrmarkbot.consts import TEXT_COLORS, POSITIONS, FONTS, MAX_FONT_SIZE
+from wtrmarkbot.messages import routes_messages
+from wtrmarkbot.states.settings import SetColor, SetPosition, SetOpacity, SetFont, SetFontSize, SetText
+from wtrmarkbot.utlis.helpers import validate_number, check_in, get_key_by_value
 
 configure_position = SettingsRoute(
     "position",

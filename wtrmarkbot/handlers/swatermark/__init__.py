@@ -1,6 +1,6 @@
 from aiogram import Dispatcher
 from .swatermark import from_command, from_callback, process
-from states.swatermark import SWatermarkState
+from wtrmarkbot.states.swatermark import SWatermarkState
 from aiogram.types import ContentTypes
 
 

@@ -2,7 +2,7 @@ from aiogram.dispatcher.handler import current_handler
 from aiogram.dispatcher.middlewares import BaseMiddleware
 from aiogram.types import Message, CallbackQuery
 
-from models.user import User
+from wtrmarkbot.models.user import User
 
 
 def userdata_required(func):

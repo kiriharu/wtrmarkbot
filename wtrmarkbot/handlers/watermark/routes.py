@@ -1,7 +1,7 @@
 from aiogram.types import Message
 from aiogram.dispatcher import FSMContext
-from states.watermark import SetWatermark
-from utlis.route import Route
+from wtrmarkbot.states.watermark import SetWatermark
+from wtrmarkbot.utlis.route import Route
 
 
 class TextRoute(Route):

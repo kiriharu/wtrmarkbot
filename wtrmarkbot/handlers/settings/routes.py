@@ -1,11 +1,11 @@
-from utlis.route import Route
+from wtrmarkbot.utlis.route import Route
 from aiogram.types import Message, CallbackQuery
-from models.user import User
+from wtrmarkbot.models.user import User
 from aiogram.dispatcher import FSMContext
-from middlewares.userdata import userdata_required
+from wtrmarkbot.middlewares.userdata import userdata_required
 from aiogram import Dispatcher
 from aiogram.types import ContentTypes
-from keyboards.inline.menu import settings_menu
+from wtrmarkbot.keyboards.inline.menu import settings_menu
 
 
 class SettingsRoute(Route):

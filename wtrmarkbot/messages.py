@@ -1,6 +1,6 @@
 from aiogram.types import ReplyKeyboardRemove
-from keyboards.reply.watermark import watermark_position, colors, fonts
-from keyboards.inline.menu import main_menu
+from wtrmarkbot.keyboards.reply.watermark import watermark_position, colors, fonts
+from wtrmarkbot.keyboards.inline.menu import main_menu
 from consts import MAX_FONT_SIZE
 
 STARTING_MESSAGE = f"Привет! Добро пожаловать в @wtrmarkbot!" \

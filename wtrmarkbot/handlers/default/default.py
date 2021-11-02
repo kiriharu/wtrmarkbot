@@ -1,8 +1,8 @@
 from aiogram.types import Message, CallbackQuery
-from messages import STARTING_MESSAGE
-from middlewares.userdata import userdata_required
-from models.user import User
-from keyboards.inline.menu import main_menu
+from wtrmarkbot.messages import STARTING_MESSAGE
+from wtrmarkbot.middlewares.userdata import userdata_required
+from wtrmarkbot.models.user import User
+from wtrmarkbot.keyboards.inline.menu import main_menu
 
 # TODO: start message to routes_messages
 

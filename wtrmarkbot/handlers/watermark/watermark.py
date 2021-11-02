@@ -1,11 +1,11 @@
 from aiogram.types import Message, CallbackQuery
 from aiogram.dispatcher import FSMContext
-from states.watermark import SetWatermark
+from wtrmarkbot.states.watermark import SetWatermark
 from .routes import TextRoute
-from messages import routes_messages
-from consts import POSITIONS, TEXT_COLORS, FONTS, MAX_FONT_SIZE
-from utlis.helpers import validate_number, check_in
-from utlis.image_converter import watermark_process
+from wtrmarkbot.messages import routes_messages
+from wtrmarkbot.consts import POSITIONS, TEXT_COLORS, FONTS, MAX_FONT_SIZE
+from wtrmarkbot.utlis.helpers import validate_number, check_in
+from wtrmarkbot.utlis.image_converter import watermark_process
 
 get_position = TextRoute(
     "position",

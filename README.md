@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <a href="https://github.com/kiriharu/wtrmarkbot"><img src="etc/logo.png" alt="Wtrmarkbot"></a>
+  <a href="https://github.com/kiriharu/wtrmarkbot"><img src="wtrmarkbot/etc/logo.png" alt="Wtrmarkbot"></a>
   <br>
     Wtrmarkbot
   <br>
@@ -25,8 +25,8 @@
 ## Скриншоты
 * Настройки:
 
-![Settings](etc/settings.png)
+![Settings](wtrmarkbot/etc/settings.png)
 
 * Меню выбора типа работы:
 
-![Generate menu](etc/generate_menu.png)
+![Generate menu](wtrmarkbot/etc/generate_menu.png)

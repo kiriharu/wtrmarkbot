@@ -1,11 +1,11 @@
 from aiogram.types import Message, CallbackQuery
 from aiogram.dispatcher import FSMContext
-from states.swatermark import SWatermarkState
-from messages import routes_messages
-from middlewares.userdata import userdata_required
-from models.user import User
-from consts import TEXT_COLORS
-from utlis.image_converter import watermark_process
+from wtrmarkbot.states.swatermark import SWatermarkState
+from wtrmarkbot.messages import routes_messages
+from wtrmarkbot.middlewares.userdata import userdata_required
+from wtrmarkbot.models.user import User
+from wtrmarkbot.consts import TEXT_COLORS
+from wtrmarkbot.utlis.image_converter import watermark_process
 
 
 async def from_callback(callback_query: CallbackQuery):

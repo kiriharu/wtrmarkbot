@@ -1,5 +1,5 @@
 from aiogram import Dispatcher
-from states.watermark import SetWatermark
+from wtrmarkbot.states.watermark import SetWatermark
 from aiogram.types import ContentTypes
 
 from .watermark import (

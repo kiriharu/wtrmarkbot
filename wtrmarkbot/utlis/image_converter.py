@@ -2,9 +2,9 @@ from concurrent.futures import ThreadPoolExecutor
 from functools import partial
 from typing import Union, Tuple
 from PIL import ImageFont, ImageDraw, Image
-from messages import routes_messages
+from wtrmarkbot.messages import routes_messages
 from io import BytesIO
-from consts import MARGIN, Side
+from wtrmarkbot.consts import MARGIN, Side
 pool = ThreadPoolExecutor()
 
 
