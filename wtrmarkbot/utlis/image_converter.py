@@ -63,8 +63,10 @@ async def async_image_process(img_bytes, position, color, font, size, text):
     )
 
 
-async def watermark_process(msg, photo, position, color,
-                            opacity, font, fsize, text):
+async def watermark_process(
+    msg, photo, position, color,
+    opacity, font, fsize, text
+):
     pic_bytes = BytesIO()
     await photo.download(pic_bytes)
     color_with_opacity = color.copy()
