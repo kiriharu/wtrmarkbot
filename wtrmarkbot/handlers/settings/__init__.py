@@ -1,7 +1,6 @@
 from aiogram import Dispatcher
-from .settings import settings_from_callback
 
-from .settings import (
+from wtrmarkbot.handlers.settings.settings import (
     configure_position,
     configure_color,
     configure_opacity,
@@ -9,6 +8,7 @@ from .settings import (
     configure_fontsize,
     configure_text,
     configure_result_type,
+    settings_from_callback,
 )
 
 

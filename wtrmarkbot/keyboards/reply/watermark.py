@@ -1,4 +1,5 @@
 from aiogram.types import ReplyKeyboardMarkup
+
 from wtrmarkbot.consts import POSITIONS, TEXT_COLORS, FONTS
 from wtrmarkbot.models import ResultType
 

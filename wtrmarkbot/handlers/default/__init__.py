@@ -1,4 +1,5 @@
 from aiogram import Dispatcher
+
 from .default import (
     start_from_command,
     start_from_callback,

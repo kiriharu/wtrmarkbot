@@ -1,9 +1,9 @@
-from aiogram.types import Message, CallbackQuery
+from aiogram.types import CallbackQuery
 
 from wtrmarkbot.keyboards.inline.menu import settings_menu
 from wtrmarkbot.middlewares.userdata import userdata_required
 from wtrmarkbot.models.user import User, ResultType
-from .routes import SettingsRoute
+from wtrmarkbot.handlers.settings.routes import SettingsRoute
 from wtrmarkbot.consts import TEXT_COLORS, POSITIONS, FONTS, MAX_FONT_SIZE
 from wtrmarkbot.messages import routes_messages
 from wtrmarkbot.states.settings import (
@@ -16,7 +16,7 @@ from wtrmarkbot.states.settings import (
     SetResultType,
 )
 from wtrmarkbot.utlis.helpers import validate_number, check_in, get_key_by_value
-from .utils import create_example
+from wtrmarkbot.handlers.settings.utils import create_example
 
 configure_position = SettingsRoute(
     "position", POSITIONS.get, routes_messages.get("position"), SetPosition
@@ -71,4 +71,3 @@ async def settings_from_callback(callback_query: CallbackQuery, user: User):
     )
 
     await callback_query.answer()
-

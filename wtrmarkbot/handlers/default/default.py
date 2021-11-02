@@ -1,4 +1,5 @@
 from aiogram.types import Message, CallbackQuery
+
 from wtrmarkbot.messages import STARTING_MESSAGE
 from wtrmarkbot.middlewares.userdata import userdata_required
 from wtrmarkbot.models.user import User
@@ -18,8 +19,7 @@ async def start_from_command(msg: Message, user: User):
 @userdata_required
 async def start_from_callback(callback_query: CallbackQuery, user: User):
     await callback_query.bot.delete_message(
-        callback_query.from_user.id,
-        callback_query.message.message_id
+        callback_query.from_user.id, callback_query.message.message_id
     )
     await callback_query.bot.send_message(
         chat_id=callback_query.from_user.id,
