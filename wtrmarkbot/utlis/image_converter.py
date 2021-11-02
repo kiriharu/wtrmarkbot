@@ -1,15 +1,12 @@
 import asyncio
-from typing import Union, Tuple, Optional
+from typing import Union, Tuple, BinaryIO
 from io import BytesIO
 from concurrent.futures import ThreadPoolExecutor
 from functools import partial
 
 from PIL import ImageFont, ImageDraw, Image
-from aiogram.types import Message
 
-from wtrmarkbot.messages import routes_messages
 from wtrmarkbot.consts import MARGIN, Side
-from wtrmarkbot.models import ResultType
 
 pool = ThreadPoolExecutor()
 
@@ -67,7 +64,7 @@ async def async_image_process(img_bytes, position, color, font, size, text):
 
 
 async def add_watermark(
-    photo: BytesIO,
+    photo: Union[BytesIO, BinaryIO],
     position: str,
     color: list,
     opacity: int,

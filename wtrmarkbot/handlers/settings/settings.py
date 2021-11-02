@@ -16,6 +16,7 @@ from wtrmarkbot.states.settings import (
     SetResultType,
 )
 from wtrmarkbot.utlis.helpers import validate_number, check_in, get_key_by_value
+from .utils import create_example
 
 configure_position = SettingsRoute(
     "position", POSITIONS.get, routes_messages.get("position"), SetPosition
@@ -57,17 +58,17 @@ configure_result_type = SettingsRoute(
 
 @userdata_required
 async def settings_from_callback(callback_query: CallbackQuery, user: User):
-    await callback_query.bot.edit_message_text(
+
+    await callback_query.bot.delete_message(
+        callback_query.from_user.id, callback_query.message.message_id
+    )
+
+    await callback_query.bot.send_photo(
         chat_id=callback_query.from_user.id,
-        message_id=callback_query.message.message_id,
-        text=f"🖼Ваши настройки для установки водяных знаков:\n\n",
+        photo=await create_example(user),
+        caption=f"🖼Ваши настройки для установки водяных знаков:\n\n",
         reply_markup=settings_menu(user),
     )
 
+    await callback_query.answer()
 
-@userdata_required
-async def settings_from_command(msg: Message, user: User):
-    await msg.answer(
-        f"🖼Ваши настройки для установки водяных знаков:\n\n",
-        reply_markup=settings_menu(user),
-    )
