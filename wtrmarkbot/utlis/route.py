@@ -3,10 +3,10 @@ from aiogram.types import Message
 
 
 class Route:
-
     def __init__(
         self,
-        name: str, validator: callable,
+        name: str,
+        validator: callable,
         fail_message_args: dict,
         state_obj: Any,
     ):

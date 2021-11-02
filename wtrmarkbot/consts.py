@@ -34,10 +34,9 @@ POSITIONS = {
     "Снизу": Side.BOTTOM,
     "Слева": Side.LEFT,
     "Справа": Side.RIGHT,
-
     "Сверху в левом углу": Side.TOP_LEFT,
     "Сверху в правом углу": Side.TOP_RIGHT,
     "Снизу в левом углу": Side.BOTTOM_LEFT,
     "Снизу в правом углу": Side.BOTTOM_RIGHT,
-    "По центру": Side.CENTER
+    "По центру": Side.CENTER,
 }

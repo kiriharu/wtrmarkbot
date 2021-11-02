@@ -13,13 +13,18 @@ from wtrmarkbot.utlis.image_converter import watermark_process
 async def process(msg: Message, data: Union[PhotoSize, Document], user: User):
     try:
         await watermark_process(
-            msg, data, user.position, TEXT_COLORS[user.color], user.opacity,
-            user.font, user.fontsize, user.text, user.result_type
+            msg,
+            data,
+            user.position,
+            TEXT_COLORS[user.color],
+            user.opacity,
+            user.font,
+            user.fontsize,
+            user.text,
+            user.result_type,
         )
     except UnidentifiedImageError:
-        await msg.answer(
-            "🤖 Документ поврежден или не является картинкой."
-        )
+        await msg.answer("🤖 Документ поврежден или не является картинкой.")
 
 
 @userdata_required

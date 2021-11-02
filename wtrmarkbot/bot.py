@@ -12,7 +12,7 @@ from wtrmarkbot.config import (
     MYSQL_USER,
     MYSQL_PASSWORD,
     MYSQL_PORT,
-    MYSQL_DATABASE
+    MYSQL_DATABASE,
 )
 from wtrmarkbot.middlewares import UserMiddleware
 from wtrmarkbot import handlers
@@ -24,17 +24,14 @@ dp = Dispatcher(telegram_bot, storage=storage)
 
 async def database_init():
     if MYSQL_HOST is not None:
-        db_url = f"mysql://{MYSQL_USER}:{MYSQL_PASSWORD}@" \
-                 f"{MYSQL_HOST}:{MYSQL_PORT}/{MYSQL_DATABASE}"
+        db_url = (
+            f"mysql://{MYSQL_USER}:{MYSQL_PASSWORD}@"
+            f"{MYSQL_HOST}:{MYSQL_PORT}/{MYSQL_DATABASE}"
+        )
     else:
         db_url = "sqlite://db.sqlite3"
     try:
-        await Tortoise.init(
-            db_url=db_url,
-            modules={
-                'models': ['wtrmarkbot.models']
-            }
-        )
+        await Tortoise.init(db_url=db_url, modules={"models": ["wtrmarkbot.models"]})
     except DBConnectionError:
         logger.error("Connection to database failed.")
         await sleep(10)

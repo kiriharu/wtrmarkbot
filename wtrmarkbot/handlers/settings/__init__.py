@@ -2,21 +2,20 @@ from aiogram import Dispatcher
 from .settings import settings_from_callback, settings_from_command
 
 from .settings import (
-    configure_position, configure_color, configure_opacity,
-    configure_font, configure_fontsize, configure_text,
-    configure_result_type
+    configure_position,
+    configure_color,
+    configure_opacity,
+    configure_font,
+    configure_fontsize,
+    configure_text,
+    configure_result_type,
 )
 
 
 def setup(dp: Dispatcher):
-
-    dp.register_message_handler(
-        settings_from_command, commands=['settings']
-    )
-
+    dp.register_message_handler(settings_from_command, commands=["settings"])
     dp.register_callback_query_handler(
-        settings_from_callback,
-        lambda c: c.data and c.data.startswith('settings_menu')
+        settings_from_callback, lambda c: c.data and c.data.startswith("settings_menu")
     )
 
     configure_position.register(dp)

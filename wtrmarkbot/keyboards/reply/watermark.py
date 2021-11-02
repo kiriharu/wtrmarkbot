@@ -5,9 +5,7 @@ from wtrmarkbot.models import ResultType
 
 def keyboard() -> ReplyKeyboardMarkup:
     return ReplyKeyboardMarkup(
-        resize_keyboard=True,
-        one_time_keyboard=True,
-        row_width=1
+        resize_keyboard=True, one_time_keyboard=True, row_width=1
     )
 
 

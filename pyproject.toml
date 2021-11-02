@@ -12,6 +12,7 @@ tortoise-orm = {extras = ["aiomysql"], version = "^0.17.8"}
 Pillow = "^8.4.0"
 
 [tool.poetry.dev-dependencies]
+black = {extras = ["d"], version = "^21.10b0"}
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
